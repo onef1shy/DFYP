@@ -1,0 +1,10 @@
+fire
+h5py
+einops
+numpy==1.26.4
+pandas
+scikit-learn
+torch
+torchvision
+tqdm
+vit-pytorch

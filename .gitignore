@@ -1,0 +1,11 @@
+# datasets / checkpoints: keep folder tree, ignore actual contents
+datasets/**
+checkpoints/**
+
+# keep all subfolders
+!datasets/**/
+!checkpoints/**/
+
+# keep placeholder files
+!datasets/**/.gitkeep
+!checkpoints/**/.gitkeep
