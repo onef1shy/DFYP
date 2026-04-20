@@ -68,7 +68,7 @@ datasets/
 
 ### 2. Download Checkpoints
 
-Download the released checkpoints from Google Drive: [Google Drive](<YOUR_GOOGLE_DRIVE_LINK>), and place them under `./checkpoints/`.
+Download the released checkpoints from Google Drive: [Google Drive](https://drive.google.com/drive/folders/1G2yJkmxnTKw0WVvCey-m-ycMahr3tzBA?usp=drive_link), and place them under `./checkpoints/`.
 
 You can then evaluate the released checkpoints directly.
 
