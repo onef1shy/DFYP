@@ -15,7 +15,7 @@ Crop yield prediction is a fundamental task in precision agriculture, requiring 
 conda create -n dfyp python=3.9
 conda activate dfyp
 
-git clone <YOUR_GITHUB_REPO_URL>
+git clone https://github.com/onef1shy/DFYP.git
 cd DFYP
 
 pip install -r requirements.txt
