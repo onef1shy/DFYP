@@ -28,15 +28,22 @@ pip install -r requirements.txt
 Download the datasets and place them under `./datasets/`.
 
 - **MODIS branch (processed dataset)**: We provide a processed dataset that can be used directly at [https://huggingface.co/datasets/onef1shy/Crop-Yield-Prediction-MODIS](https://huggingface.co/datasets/onef1shy/Crop-Yield-Prediction-MODIS). No additional preprocessing is required. The preprocessing pipeline can be referenced from [pycrop-yield-prediction](https://github.com/gabrieltseng/pycrop-yield-prediction.git).
+
+The MODIS release is split into year folders only because Hugging Face rejects a single directory with too many files. For DFYP to run locally, you must flatten those year folders back into `datasets/modis/processed_data/`. This step is required:
+
+```bash
+find datasets/modis/processed_data -mindepth 2 -type f -name '*.npy' -exec mv {} datasets/modis/processed_data/ \;
+find datasets/modis/processed_data -mindepth 1 -type d -empty -delete
+```
 - **Sentinel-2 branch (Tiny-CropNet)**: [https://huggingface.co/datasets/fudong03/Tiny-CropNet/tree/main](https://huggingface.co/datasets/fudong03/Tiny-CropNet/tree/main)
 
-After downloading the Sentinel-2 data, generate the provided json split files with:
+After downloading the Sentinel-2 data, generate the required Sentinel-2 json split files for DFYP with:
 
 ```bash
 python data/build_sentinel_json.py
 ```
 
-The `datasets` directory should look like:
+After completing the steps above, the `datasets` directory should look like:
 
 ```text
 datasets/
