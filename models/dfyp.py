@@ -853,8 +853,7 @@ class SentinelDFYPRunner:
         self.crop = crop.lower()
         self.operator_type = operator_type
         self.device = device
-        self.savedir = Path(savedir) / self.crop
-        self.savedir.mkdir(parents=True, exist_ok=True)
+        self.savedir = Path(savedir)
         self.model = SentinelDFYPNet(operator_type=operator_type)
         if device.type != "cpu":
             self.model = self.model.cuda()
@@ -875,6 +874,7 @@ class SentinelDFYPRunner:
 
     def run(self, root_dir, json_dir, train_steps=25000, batch_size=32, starter_learning_rate=1e-4, weight_decay=1e-5, patience=10):
         """Train the Sentinel-2 model and save the final checkpoint."""
+        self.savedir.mkdir(parents=True, exist_ok=True)
         year = 2022
         begin_time = time.time()
         self.model.initialize_weights()
@@ -914,7 +914,7 @@ class SentinelDFYPRunner:
         )
         results = self._test(criterion, test_loader_sentinel, test_loader_usda)
         model_information = {"state_dict": self.model.state_dict(), "val_loss": val_scores["loss"], "train_loss": train_scores["loss"], **results}
-        torch.save(model_information, self.savedir / f"model_{target_year}.pth")
+        torch.save(model_information, self.savedir / f"{self.crop}.pth")
         return self.analyze_results(model_information["test_real"], model_information["test_pred"])
 
     def evaluate_checkpoint(self, checkpoint_path, root_dir, json_dir):
